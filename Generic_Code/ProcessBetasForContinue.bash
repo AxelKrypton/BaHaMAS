@@ -1,6 +1,6 @@
 #
 #  Copyright (c) 2015 Christopher Czaban
-#  Copyright (c) 2015-2018,2020 Alessandro Sciarra
+#  Copyright (c) 2015-2018,2020-2021 Alessandro Sciarra
 #
 #  This file is part of BaHaMAS.
 #
@@ -116,7 +116,7 @@ function ProcessBetaValuesForContinue()
         HandleOutputFilesForContinueForGivenSimulation ${runId} || continue
         __static__MakeTemporaryCopyOfOriginalInputFile
         if ! HandleInputFileForContinueForGivenSimulation ${runId}; then
-            RestoreRunBetaDirectoryBeforeSkippingBeta
+            RestoreRunBetaDirectoryBeforeSkippingBeta ${runId}
             __static__RestoreOriginalInputFile
             continue
         fi

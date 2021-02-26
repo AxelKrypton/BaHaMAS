@@ -32,7 +32,7 @@ However, it is impossible to avoid those, especially in an earlier phase of deve
 
 ## [Unreleased]
 
-
+* :sos: Fix bug in `continue*` execution modes in case of resuming from a non existing trajectory.
 
 ## [Version 0.4.0] &ensp;<sub><sup>22 February 2021</sup></sub>
 

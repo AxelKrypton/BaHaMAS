@@ -140,7 +140,7 @@ function HandleOutputFilesForContinueForGivenSimulation_CL2QCD()
              ${trashFolderGlobalPath}/$(basename ${outputFileGlobalPath}) > ${outputFileGlobalPath}; then
             Error "Measurement for trajectory " emph "$(( BHMAS_trajectoriesToBeResumedFrom[${runId}] - 1 ))" " not found in outputfile "\
                   emph "${outputFileGlobalPath}\n" "The value " emph "beta = ${runId}" " will be skipped!"
-            RestoreRunBetaDirectoryBeforeSkippingBeta_CL2QCD
+            RestoreRunBetaDirectoryBeforeSkippingBeta_CL2QCD ${runId}
             BHMAS_problematicBetaValues+=( ${runId} )
             return 1
         fi
@@ -152,7 +152,7 @@ function HandleOutputFilesForContinueForGivenSimulation_CL2QCD()
                  ${trashFolderGlobalPath}/$(basename ${outputPbpFileGlobalPath}) > ${outputPbpFileGlobalPath}; then
                 Error "Measurement for trajectory " emph "$(( BHMAS_trajectoriesToBeResumedFrom[${runId}] - 1 ))" " not found in pbp outputfile "\
                       emph "${outputPbpFileGlobalPath}\n" "The value " emph "beta = ${runId}" " will be skipped!"
-                RestoreRunBetaDirectoryBeforeSkippingBeta_CL2QCD
+                RestoreRunBetaDirectoryBeforeSkippingBeta_CL2QCD ${runId}
                 BHMAS_problematicBetaValues+=( ${runId} )
                 return 1
             fi
