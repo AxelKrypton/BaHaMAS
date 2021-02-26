@@ -32,6 +32,7 @@ However, it is impossible to avoid those, especially in an earlier phase of deve
 
 ## [Unreleased]
 
+* :white_check_mark: Improve handling of existing pbp file in `continue*` execution modes when resuming a run and switching off its measurement.
 * :sos: Fix bug in `continue*` execution modes in case of resuming from a non existing trajectory.
 
 ## [Version 0.4.0] &ensp;<sub><sup>22 February 2021</sup></sub>
