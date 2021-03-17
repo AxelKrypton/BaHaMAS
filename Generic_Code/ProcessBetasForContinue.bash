@@ -23,11 +23,11 @@ function __static__CheckWhetherAnySimulationForGivenBetaValuesIsAlreadyEnqueued(
     local jobsInformation runId jobString betaString seedString regex abort
     #Fill jobsInformation array with jobID@jobName@jobStatus
     GatherJobsInformationForContinueMode
+    abort=1
     for runId in ${BHMAS_betaValues[@]}; do
         betaString="${BHMAS_betaPrefix}${runId%%_*}"
         seedString="$(cut -d'_' -f2 <<< "${runId}")"
         regex="^.*${BHMAS_parametersString}.*${betaString}.*${seedString}.*(RUNNING|PENDING)\$"
-        abort=1
         for jobString in "${jobsInformation[@]}"; do
             if [[ ${jobString} =~ ${regex} ]]; then
                 Error "The simulation " emph "${BHMAS_betaPrefix}${runId}" " seems to be " emph "${jobString##*@}" " with " emph "job-id = ${jobString%%@*}" "."
