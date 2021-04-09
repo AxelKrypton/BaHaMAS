@@ -123,7 +123,7 @@ function DeclareBaHaMASGlobalVariables()
     BHMAS_checkpointFrequency=100
     BHMAS_useMultipleChains='TRUE'
     BHMAS_numberOfPseudofermions=1
-    BHMAS_inverterMaxIterations=15000
+    BHMAS_inverterMaxIterations=50000
 
     #CL2QCD specific
     BHMAS_savepointFrequency=20
