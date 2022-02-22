@@ -1,5 +1,6 @@
 #
 #  Copyright (c) 2017-2018,2020-2021 Alessandro Sciarra
+#  Copyright (c) 2022 Reinhold Kaiser
 #
 #  This file is part of BaHaMAS.
 #
@@ -83,7 +84,7 @@ function DeclarePathRelatedGlobalVariables()
                                                 [${BHMAS_nspacePrefix}]="BHMAS_nspace" )
     #Parameters regular expressions
     readonly BHMAS_nflavourRegex='[0-9]\([.][0-9]\)\?'
-    readonly BHMAS_chempotRegex='\(0\|PiT\)'
+    readonly BHMAS_chempotRegex='\(0\|\([0-9]\{4\}\)\?PiT\)'
     readonly BHMAS_massRegex='\([0-9][.]\)\?[0-9]\{4\}'
     readonly BHMAS_ntimeRegex='[0-9]\{1,2\}'
     readonly BHMAS_nspaceRegex='[0-9]\{1,2\}'
