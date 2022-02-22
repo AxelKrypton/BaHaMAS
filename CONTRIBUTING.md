@@ -15,7 +15,13 @@ We encourage you to use the [AVH Edition](https://github.com/petervanderdoes/git
 ## Comply with the codebase style
 
 The general advice is pretty trivial: **Be consistent with what you find**.
-However, it is worth giving you here a bit more information, so that it should be easier to follow the general rule.
+For instance,
+* indentation is done _exclusively with spaces_ and no <kbd>Tab</kbd> should be used;
+* braces for functions are put on separate lines;
+* loops and conditional clauses are started on a single line, i.e. the `do` and `then` keywords are not put on a separate line;
+* ...
+
+Moreover, it is worth giving you here a bit more information, so that it should be easier to follow the general rule.
 
 ### Editing existing files or creating new ones
 
