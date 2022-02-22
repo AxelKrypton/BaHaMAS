@@ -1,5 +1,6 @@
 #
 #  Copyright (c) 2017,2020-2021 Alessandro Sciarra
+#  Copyright (c) 2022 Reinhold Kaiser
 #
 #  This file is part of BaHaMAS.
 #
@@ -188,6 +189,9 @@ function MakeTestPreliminaryOperations()
         readonly software='CL2QCD'
         readonly projectFolder='StaggeredFakeProject'
         testParametersString='Nf2_mui0_mass0050_nt6_ns18'
+        if [[ "$1" == 'CL2QCD-prepare-only' ]]; then
+            testParametersString='Nf5.0_mui2700PiT_mass0050_nt8_ns16'
+        fi
         testParametersPath="/${testParametersString//_/\/}"
     fi
     ln -s "${BHMAS_testsFolder}/UserVariables_${software}.bash" "${userVariablesFile}" 2>/dev/null
