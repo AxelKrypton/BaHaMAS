@@ -84,7 +84,7 @@ function ProduceInputFile_CL2QCD()
             if [[ ${piTFraction} = '' ]]; then
                 piTFraction=1
             else
-                piTFtraction=0."${piTFraction}"
+                piTFraction=0."${piTFraction}"
             fi
             __static__AddToInputFile "chemicalPotentialIm=$(awk -v ntime="${BHMAS_ntime}" -v fraction="${piTFraction}" 'BEGIN{printf "%.15f\n", atan2(0, -1)/ntime*fraction}')"
         else
