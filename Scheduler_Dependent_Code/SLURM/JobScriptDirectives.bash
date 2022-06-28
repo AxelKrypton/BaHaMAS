@@ -1,5 +1,5 @@
 #
-#  Copyright (c) 2020 Alessandro Sciarra
+#  Copyright (c) 2020,2022 Alessandro Sciarra
 #
 #  This file is part of BaHaMAS.
 #
@@ -30,6 +30,11 @@ function AddSchedulerSpecificPartToJobScript_SLURM()
         local numberOfNodes numberOfProcessors
         numberOfProcessors=$(CalculateProductOfIntegers ${BHMAS_processorsGrid[@]})
         numberOfNodes=$(( numberOfProcessors / BHMAS_coresPerNode ))
+        if((numberOfNodes * BHMAS_coresPerNode != numberOfProcessors)); then
+            Error "The number of cores per nodes does not divide the total number of processors!\n"\
+                  "Consider using the --coresPerNode option. Skipping jobscript creation!"
+            return 1
+        fi
         hardwareDirective="#SBATCH --nodes=${numberOfNodes}
 #SBATCH --ntasks=${numberOfProcessors}
 #SBATCH --ntasks-per-node=${BHMAS_coresPerNode}

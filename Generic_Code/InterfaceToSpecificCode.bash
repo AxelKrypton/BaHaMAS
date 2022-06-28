@@ -1,5 +1,5 @@
 #
-#  Copyright (c) 2017,2020 Alessandro Sciarra
+#  Copyright (c) 2017,2020,2022 Alessandro Sciarra
 #
 #  This file is part of BaHaMAS.
 #
@@ -60,8 +60,10 @@ function __static__CheckExistenceOfFunctionAndCallIt()
     local nameOfTheFunction
     nameOfTheFunction=$1; shift
     if [[ "$(type -t ${nameOfTheFunction})" = 'function' ]]; then
-        ${nameOfTheFunction} "$@"
-        # Return value propagates automatically since a function returns the last exit code!
+        ${nameOfTheFunction} "$@" || return $?
+        # Return value propagates automatically since a function returns the last exit code.
+        # However, since we have exit on error active, here the script would terminate if
+        # the function returns non-zero exit code and, instead we want this propagate up!
     else
         Fatal ${BHMAS_fatalMissingFeature} "Function " emph "${nameOfTheFunction}" " not found!\n"\
               "Please provide an implementation following the " B "BaHaMAS" uB " documentation."
@@ -69,127 +71,128 @@ function __static__CheckExistenceOfFunctionAndCallIt()
 }
 
 #-------------------------------------------------------------------------------------------------------------------------#
+# NOTE: We need to propagate up a possible non-zero exit code -> use '|| return $?' when calling
 
 function GetDefaultCommandToRunSoftware()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_clusterScheduler} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_clusterScheduler} "$@" || return $?
 }
 
 function AddSchedulerSpecificPartToJobScript()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_clusterScheduler} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_clusterScheduler} "$@" || return $?
 }
 
 function ExtractWalltimeFromJobScript()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_clusterScheduler} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_clusterScheduler} "$@" || return $?
 }
 
 function SubmitJob()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_clusterScheduler} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_clusterScheduler} "$@" || return $?
 }
 
 function GatherJobsInformationForJobStatusMode()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_clusterScheduler} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_clusterScheduler} "$@" || return $?
 }
 
 function GatherJobsInformationForSimulationStatusMode()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_clusterScheduler} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_clusterScheduler} "$@" || return $?
 }
 
 function GatherJobsInformationForContinueMode()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_clusterScheduler} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_clusterScheduler} "$@" || return $?
 }
 
 #-------------------------------------------------------------------------------------------------------------------------#
 
 function PrepareSoftwareSpecificGlobalVariableValidation()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@" || return $?
 }
 
 function PerformParametersSanityChecks()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@" || return $?
 }
 
 function ProduceInputFile()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@" || return $?
 }
 
 function ProduceExecutableFileInGivenBetaDirectories()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@" || return $?
 }
 
 function ExtractNumberOfTrajectoriesToBeDoneFromInputFile()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@" || return $?
 }
 
 function AddSoftwareSpecificPartToProductionJobScript()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@" || return $?
 }
 
 function AddSoftwareSpecificPartToMeasurementJobScript()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@" || return $?
 }
 
 function ProduceMeasurementCommandsPerBeta()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@" || return $?
 }
 
 function HandleEnvironmentForContinueForGivenSimulation()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@" || return $?
 }
 
 function RestoreRunBetaDirectoryBeforeSkippingBeta()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@" || return $?
 }
 
 function HandleOutputFilesForContinueForGivenSimulation()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@" || return $?
 }
 
 function HandleInputFileForContinueForGivenSimulation()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@" || return $?
 }
 
 function ModifyOptionsInInputFile()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@" || return $?
 }
 
 function FindAndSetNumberOfTrajectoriesAlreadyProduced()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@" || return $?
 }
 
 function ExtractSimulationInformationFromInputFile()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@" || return $?
 }
 
 function CreateOutputFileInTheStandardFormat()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@" || return $?
 }
 
 function CleanOutputFilesForGivenSimulation()
 {
-    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@"
+    __static__CheckExistenceOfFunctionAndCallIt   ${FUNCNAME}_${BHMAS_lqcdSoftware} "$@" || return $?
 }
 
 #-------------------------------------------------------------------------------------------------------------------------#
