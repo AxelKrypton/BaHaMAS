@@ -32,6 +32,7 @@ However, it is impossible to avoid those, especially in an earlier phase of deve
 
 ## [Unreleased]
 
+* :new: By specifying a container command as a setup variable, it is now possible to run the executables through a container.
 * :new: Continuous values of the mui parameter are now possible to be specified in the path of the parameters.
 * :sos: Fix bug in `continue*` execution modes in case of resuming already enqueued simulations.
 * :white_check_mark: Improve handling of existing pbp file in `continue*` execution modes when resuming a run and switching off its measurement.
