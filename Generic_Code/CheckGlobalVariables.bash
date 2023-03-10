@@ -1,5 +1,6 @@
 #
 #  Copyright (c) 2017-2018,2020 Alessandro Sciarra
+#  Copyright (c) 2023 Reinhold Kaiser
 #
 #  This file is part of BaHaMAS.
 #
@@ -62,6 +63,7 @@ function CheckUserDefinedVariablesAndDefineDependentAdditionalVariables()
         BHMAS_walltime
         BHMAS_maximumWalltime
         BHMAS_measurePbp
+        BHMAS_jobContainerCommand
     )
     variablesThatIfNotEmptyMustNotEndWithSlash=(
         BHMAS_submitDiskGlobalPath
@@ -145,6 +147,15 @@ function CheckUserDefinedVariablesAndDefineDependentAdditionalVariables()
         fi
     else
         readonly BHMAS_jobRunCommand="$(GetDefaultCommandToRunSoftware)"
+    fi
+    if [[ "${BHMAS_jobContainerCommand:-}" != '' ]]; then
+        containerCommandOutput=$(${BHMAS_jobContainerCommand} echo 'Hello world!')
+        if [[ "${containerCommandOutput}" == "Hello world!" ]]; then
+            readonly BHMAS_jobContainerCommand
+        else
+            Error -n 'The container command ' B emph "${BHMAS_jobContainerCommand}" uB ' could not successfully run ' b emph "echo 'Hello world!'" uB '.'
+            mustReturn='False'
+        fi
     fi
 
     #If variables remained in arrays, print error
