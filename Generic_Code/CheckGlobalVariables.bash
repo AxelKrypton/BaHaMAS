@@ -1,5 +1,5 @@
 #
-#  Copyright (c) 2017-2018,2020 Alessandro Sciarra
+#  Copyright (c) 2017-2018,2020,2023 Alessandro Sciarra
 #  Copyright (c) 2023 Reinhold Kaiser
 #
 #  This file is part of BaHaMAS.
@@ -157,7 +157,7 @@ function CheckUserDefinedVariablesAndDefineDependentAdditionalVariables()
         else
             Error -n 'The container command ' B emph "${BHMAS_jobContainerCommand}" uB ' specified in the setup as '\
                      emph 'BHMAS_jobContainerCommand' '\ncould not successfully run ' emph "echo 'Hello world!'" uB '.'
-            mustReturn='False'
+            mustReturn='FALSE'
         fi
     fi
 
