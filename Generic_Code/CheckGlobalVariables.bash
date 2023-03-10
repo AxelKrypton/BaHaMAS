@@ -149,11 +149,14 @@ function CheckUserDefinedVariablesAndDefineDependentAdditionalVariables()
         readonly BHMAS_jobRunCommand="$(GetDefaultCommandToRunSoftware)"
     fi
     if [[ "${BHMAS_jobContainerCommand:-}" != '' ]]; then
-        containerCommandOutput=$(${BHMAS_jobContainerCommand} echo 'Hello world!')
-        if [[ "${containerCommandOutput}" == "Hello world!" ]]; then
+        if ! hash "${BHMAS_jobContainerCommand%% *}" 2> /dev/null; then
+            Error -n 'Program ' B emph "${BHMAS_jobContainerCommand%% *}" uB ' was not found, but it was specified in the setup in ' emph 'BHMAS_jobContainerCommand' uB '.'
+            mustReturn='FALSE'
+        elif [[ $(${BHMAS_jobContainerCommand} echo 'Hello world!' 2> /dev/null) == 'Hello world!' ]]; then
             readonly BHMAS_jobContainerCommand
         else
-            Error -n 'The container command ' B emph "${BHMAS_jobContainerCommand}" uB ' could not successfully run ' b emph "echo 'Hello world!'" uB '.'
+            Error -n 'The container command ' B emph "${BHMAS_jobContainerCommand}" uB ' specified in the setup as '\
+                     emph 'BHMAS_jobContainerCommand' '\ncould not successfully run ' emph "echo 'Hello world!'" uB '.'
             mustReturn='False'
         fi
     fi
