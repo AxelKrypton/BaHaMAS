@@ -1,6 +1,6 @@
 #
 #  Copyright (c) 2017,2020-2021 Alessandro Sciarra
-#  Copyright (c) 2022 Reinhold Kaiser
+#  Copyright (c) 2022-2023 Reinhold Kaiser
 #
 #  This file is part of BaHaMAS.
 #
@@ -437,6 +437,7 @@ function InhibitBaHaMASCommands()
     function less(){ cecho -d "less $*"; }
     function sbatch(){ cecho -d "sbatch $*"; }
     function make(){ cecho -d "make $*"; touch "${@: -1}"; }
+    function singularity(){ shift 2; "$@"; }
     #To make liststatus find running job and then test measure time
     #NOTE: jobBetaSeedsStrings is an array because with openQCD each run handle one seed only!
     #      Here we fake mark the first entry as running to have something running for all codes.
@@ -452,7 +453,7 @@ function InhibitBaHaMASCommands()
     else
         function squeue(){ printf ''; }
     fi
-    export -f less sbatch make squeue
+    export -f less sbatch make squeue singularity
 }
 
 function RunBaHaMASInTestMode()
