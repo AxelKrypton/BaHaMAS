@@ -1,5 +1,6 @@
 #
 #  Copyright (c) 2017-2018,2020 Alessandro Sciarra
+#  Copyright (c) 2023 Reinhold Kaiser
 #
 #  This file is part of BaHaMAS.
 #
@@ -216,7 +217,7 @@ function MakeInteractiveSetupAndCreateUserDefinedVariablesFile()
     elif hash whiptail 2>/dev/null; then
         MakeInteractiveSetupUsingWhiptail
     else
-        Fatal ${BHMAS_fatalRequirement} "Programs " emph "dialog" " and " emph "whitptail" " were not found, but they are required to run the " emph "BaHaMAS setup" ".\n"\
+        Fatal ${BHMAS_fatalRequirement} "Programs " emph "dialog" " and " emph "whiptail" " were not found, but they are required to run the " emph "BaHaMAS setup" ".\n"\
               "Consider to install any of them or read in the documentation how to make the BaHaMAS setup manually!"
     fi
 

@@ -1,6 +1,7 @@
 #
 #  Copyright (c) 2015-2016 Christopher Czaban
 #  Copyright (c) 2015-2018,2020 Alessandro Sciarra
+#  Copyright (c) 2023 Reinhold Kaiser
 #
 #  This file is part of BaHaMAS.
 #
@@ -176,9 +177,9 @@ runDir="${BHMAS_runDirWithBetaFolders}/${BHMAS_betaPrefix}${runId}"
 cd \${runDir}
 
 printf "Running openQCD-FASTSUM from '\$(pwd)':\n"
-printf '  ${BHMAS_jobRunCommand} \${submitDir}/${BHMAS_productionExecutableFilename} -i \${submitDir}/${BHMAS_inputFilename} -noms -noloc ${runCommandOptions}\n\n'
+printf '  ${BHMAS_jobRunCommand} ${BHMAS_jobContainerCommand} \${submitDir}/${BHMAS_productionExecutableFilename} -i \${submitDir}/${BHMAS_inputFilename} -noms -noloc ${runCommandOptions}\n\n'
 
-${BHMAS_jobRunCommand} \${submitDir}/${BHMAS_productionExecutableFilename} -i \${submitDir}/${BHMAS_inputFilename} -noms -noloc ${runCommandOptions} &
+${BHMAS_jobRunCommand} ${BHMAS_jobContainerCommand} \${submitDir}/${BHMAS_productionExecutableFilename} -i \${submitDir}/${BHMAS_inputFilename} -noms -noloc ${runCommandOptions} &
 pidRun=\${!}
 
 __static__MonitorAndRenameCheckpointFiles "\${pidRun}" ${initialSleepTime} "${BHMAS_outputFilename}" ${deltaConfs} ${shiftConfs} "${BHMAS_configurationPrefix//\\/}" "${BHMAS_prngPrefix//\\/}" "${BHMAS_dataPrefix//\\/}" ${BHMAS_checkpointMinimumNumberOfDigits} &
