@@ -1,5 +1,5 @@
 #
-#  Copyright (c) 2020 Alessandro Sciarra
+#  Copyright (c) 2020,2023 Alessandro Sciarra
 #
 #  This file is part of BaHaMAS.
 #
@@ -23,17 +23,9 @@ function ProduceExecutableFileInGivenBetaDirectories_CL2QCD()
     for betaDirectoryGlobalPath in "$@"; do
         if [[ ${BHMAS_executionMode} != 'mode:measure' ]]; then
             destinationGlobalPath="${betaDirectoryGlobalPath}/${BHMAS_productionExecutableFilename}"
-            #In production the executable must not be there
-            if [[ -f "${destinationGlobalPath}" ]]; then
-                Internal 'Production executable file\n' file "${destinationGlobalPath}"\
-                         '\nis already present in the directory\n' dir "${betaDirectoryGlobalPath}"\
-                         'but it should not be the case in the function ' emph "${FUNCNAME}" '.'
-            else
-                cp "${BHMAS_productionExecutableGlobalPath}" "${destinationGlobalPath}" || exit ${BHMAS_fatalBuiltin}
-            fi
+            cp "${BHMAS_productionExecutableGlobalPath}" "${destinationGlobalPath}" || exit ${BHMAS_fatalBuiltin}
         else
             destinationGlobalPath="${betaDirectoryGlobalPath}/${BHMAS_measurementExecutableFilename}"
-            #In measurement the executable can be there because of possible job continuation
             cp "${BHMAS_measurementExecutableGlobalPath}" "${destinationGlobalPath}" || exit ${BHMAS_fatalBuiltin}
         fi
     done
