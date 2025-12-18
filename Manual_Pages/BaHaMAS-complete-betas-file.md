@@ -1,6 +1,6 @@
-% BaHaMAS-complete-betas-file(1) Version 0.4.0 | User Manual
+% BaHaMAS-complete-betas-file(1) Version 0.5.0 | User Manual
 % [Alessandro Sciarra](sciarra@itp.uni-frankfurt.de)
-% 22 February 2021
+% 18 December 2025
 
 # NAME
 
