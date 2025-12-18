@@ -1,5 +1,5 @@
 #
-#  Copyright (c) 2017-2018,2020-2021 Alessandro Sciarra
+#  Copyright (c) 2017-2018,2020-2021,2025 Alessandro Sciarra
 #
 #  This file is part of BaHaMAS.
 #
@@ -134,7 +134,7 @@ function ParseRemainingCommandLineOptions()
     #  - for categories 4,5,6 we have a pool of options which are
     #    parsed all together but preliminary checked if allowed.
     #
-    # https://gitlab.itp.uni-frankfurt.de/lattice-qcd/ag-philipsen/BaHaMAS/issues/27
+    # https://gitlab.itp.uni-frankfurt.de/sciarra/BaHaMAS/issues/27
     local modeSpecificAllSoftwareParser
     modeSpecificAllSoftwareParser=(
         'mode:thermalize'

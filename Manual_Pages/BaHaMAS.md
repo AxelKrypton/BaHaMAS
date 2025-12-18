@@ -19,7 +19,7 @@ During years, it has grown and improved, so that it has by now plenty of functio
 It should be intuitive to use it, especially if you are a bit familiar with the git version control system.
 Several execution modes are available and you can obtain usage information for each of them using their **\--help** option.
 
-A more detailed general overview is available [online](https://gitlab.itp.uni-frankfurt.de/lattice-qcd/ag-philipsen/BaHaMAS/-/wikis/home).
+A more detailed general overview is available [online](https://gitlab.itp.uni-frankfurt.de/sciarra/BaHaMAS/-/wikis/home).
 
 # OPTIONS
 
@@ -117,7 +117,7 @@ uncomment-betas
 
 ./betas
 :   Running `BaHaMAS` in most modes relies on a local configuration file, which name must be `betas`.
-    Refer to [its dedicated section](https://gitlab.itp.uni-frankfurt.de/lattice-qcd/ag-philipsen/BaHaMAS/-/wikis/Getting-started#betasFile) in the Wiki for more information.
+    Refer to [its dedicated section](https://gitlab.itp.uni-frankfurt.de/sciarra/BaHaMAS/-/wikis/Getting-started#betasFile) in the Wiki for more information.
 
 # ENVIRONMENT
 
@@ -147,4 +147,4 @@ If you cloned the repository on your machine, you can also use git commands like
 
 # SEE ALSO
 
-The [online Wiki](https://gitlab.itp.uni-frankfurt.de/lattice-qcd/ag-philipsen/BaHaMAS/-/wikis/home) contains the full documentation.
+The [online Wiki](https://gitlab.itp.uni-frankfurt.de/sciarra/BaHaMAS/-/wikis/home) contains the full documentation.
