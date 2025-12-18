@@ -1,5 +1,6 @@
 #
-#  Copyright (c) 2017-2018,2020 Alessandro Sciarra
+#  Copyright (c) 2017-2018,2020,2023 Alessandro Sciarra
+#  Copyright (c) 2023 Reinhold Kaiser
 #
 #  This file is part of BaHaMAS.
 #
@@ -62,6 +63,7 @@ function CheckUserDefinedVariablesAndDefineDependentAdditionalVariables()
         BHMAS_walltime
         BHMAS_maximumWalltime
         BHMAS_measurePbp
+        BHMAS_jobContainerCommand
     )
     variablesThatIfNotEmptyMustNotEndWithSlash=(
         BHMAS_submitDiskGlobalPath
@@ -145,6 +147,18 @@ function CheckUserDefinedVariablesAndDefineDependentAdditionalVariables()
         fi
     else
         readonly BHMAS_jobRunCommand="$(GetDefaultCommandToRunSoftware)"
+    fi
+    if [[ "${BHMAS_jobContainerCommand:-}" != '' ]]; then
+        if ! hash "${BHMAS_jobContainerCommand%% *}" 2> /dev/null; then
+            Error -n 'Program ' B emph "${BHMAS_jobContainerCommand%% *}" uB ' was not found, but it was specified in the setup in ' emph 'BHMAS_jobContainerCommand' uB '.'
+            mustReturn='FALSE'
+        elif [[ $(${BHMAS_jobContainerCommand} echo 'Hello world!' 2> /dev/null) == 'Hello world!' ]]; then
+            readonly BHMAS_jobContainerCommand
+        else
+            Error -n 'The container command ' B emph "${BHMAS_jobContainerCommand}" uB ' specified in the setup as '\
+                     emph 'BHMAS_jobContainerCommand' '\ncould not successfully run ' emph "echo 'Hello world!'" uB '.'
+            mustReturn='FALSE'
+        fi
     fi
 
     #If variables remained in arrays, print error

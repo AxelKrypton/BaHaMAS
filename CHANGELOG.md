@@ -33,6 +33,14 @@ However, it is impossible to avoid those, especially in an earlier phase of deve
 ## [Unreleased]
 
 
+## [Version 0.5.0] &ensp;<sub><sup>18 December 2025</sup></sub>
+
+* :sos: Fix bug in `continue*` execution modes with CL2QCD when using `--updateExecutable` command line option.
+* :new: By specifying a container command as a setup variable, it is now possible to run the executables through a container.
+* :new: Continuous values of the mui parameter are now possible to be specified in the path of the parameters.
+* :sos: Fix bug in `continue*` execution modes in case of resuming already enqueued simulations.
+* :white_check_mark: Improve handling of existing pbp file in `continue*` execution modes when resuming a run and switching off its measurement.
+* :sos: Fix bug in `continue*` execution modes in case of resuming from a non existing trajectory.
 
 ## [Version 0.4.0] &ensp;<sub><sup>22 February 2021</sup></sub>
 
@@ -100,9 +108,10 @@ However, it is impossible to avoid those, especially in an earlier phase of deve
 * :sos: Fix tests failures due to hard-coded path in tests setup.
 
 
-[Unreleased]: https://gitlab.itp.uni-frankfurt.de/lattice-qcd/ag-philipsen/bahamas/-/compare/BaHaMAS-0.4.0...develop
-[Version 0.4.0]: https://gitlab.itp.uni-frankfurt.de/lattice-qcd/ag-philipsen/bahamas/-/releases/BaHaMAS-0.4.0
-[Version 0.3.1]: https://gitlab.itp.uni-frankfurt.de/lattice-qcd/ag-philipsen/bahamas/-/releases/BaHaMAS-0.3.1
-[Version 0.3.0]: https://gitlab.itp.uni-frankfurt.de/lattice-qcd/ag-philipsen/bahamas/-/releases/BaHaMAS-0.3.0
-[Version 0.2.0]: https://gitlab.itp.uni-frankfurt.de/lattice-qcd/ag-philipsen/bahamas/-/releases/BaHaMAS-0.2.0
-[Version 0.1.0]: https://gitlab.itp.uni-frankfurt.de/lattice-qcd/ag-philipsen/bahamas/-/releases/BaHaMAS-0.1.0
+[Unreleased]: https://gitlab.itp.uni-frankfurt.de/sciarra/bahamas/-/compare/BaHaMAS-0.5.0...develop
+[Version 0.5.0]: https://gitlab.itp.uni-frankfurt.de/sciarra/bahamas/-/releases/BaHaMAS-0.5.0
+[Version 0.4.0]: https://gitlab.itp.uni-frankfurt.de/sciarra/bahamas/-/releases/BaHaMAS-0.4.0
+[Version 0.3.1]: https://gitlab.itp.uni-frankfurt.de/sciarra/bahamas/-/releases/BaHaMAS-0.3.1
+[Version 0.3.0]: https://gitlab.itp.uni-frankfurt.de/sciarra/bahamas/-/releases/BaHaMAS-0.3.0
+[Version 0.2.0]: https://gitlab.itp.uni-frankfurt.de/sciarra/bahamas/-/releases/BaHaMAS-0.2.0
+[Version 0.1.0]: https://gitlab.itp.uni-frankfurt.de/sciarra/bahamas/-/releases/BaHaMAS-0.1.0

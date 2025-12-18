@@ -1,6 +1,6 @@
 #
 #  Copyright (c) 2015 Christopher Czaban
-#  Copyright (c) 2015-2018,2020 Alessandro Sciarra
+#  Copyright (c) 2015-2018,2020-2021 Alessandro Sciarra
 #
 #  This file is part of BaHaMAS.
 #
@@ -23,11 +23,11 @@ function __static__CheckWhetherAnySimulationForGivenBetaValuesIsAlreadyEnqueued(
     local jobsInformation runId jobString betaString seedString regex abort
     #Fill jobsInformation array with jobID@jobName@jobStatus
     GatherJobsInformationForContinueMode
+    abort=1
     for runId in ${BHMAS_betaValues[@]}; do
         betaString="${BHMAS_betaPrefix}${runId%%_*}"
         seedString="$(cut -d'_' -f2 <<< "${runId}")"
         regex="^.*${BHMAS_parametersString}.*${betaString}.*${seedString}.*(RUNNING|PENDING)\$"
-        abort=1
         for jobString in "${jobsInformation[@]}"; do
             if [[ ${jobString} =~ ${regex} ]]; then
                 Error "The simulation " emph "${BHMAS_betaPrefix}${runId}" " seems to be " emph "${jobString##*@}" " with " emph "job-id = ${jobString%%@*}" "."
@@ -116,7 +116,7 @@ function ProcessBetaValuesForContinue()
         HandleOutputFilesForContinueForGivenSimulation ${runId} || continue
         __static__MakeTemporaryCopyOfOriginalInputFile
         if ! HandleInputFileForContinueForGivenSimulation ${runId}; then
-            RestoreRunBetaDirectoryBeforeSkippingBeta
+            RestoreRunBetaDirectoryBeforeSkippingBeta ${runId}
             __static__RestoreOriginalInputFile
             continue
         fi

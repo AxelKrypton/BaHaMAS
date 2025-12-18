@@ -1,5 +1,5 @@
 #
-#  Copyright (c) 2017-2018,2020 Alessandro Sciarra
+#  Copyright (c) 2017-2018,2020,2022 Alessandro Sciarra
 #
 #  This file is part of BaHaMAS.
 #
@@ -135,7 +135,7 @@ function __static__ProduceJobScript()
     done
     cecho "     ${excludeNodesString}"
     #Produce job script
-    AddSchedulerSpecificPartToJobScript "${jobScriptGlobalPath}" "${walltime}" "${excludeNodesString}"
+    AddSchedulerSpecificPartToJobScript "${jobScriptGlobalPath}" "${walltime}" "${excludeNodesString}" || return 1
     if [[ ${BHMAS_executionMode} = 'mode:measure' ]]; then
         AddSoftwareSpecificPartToMeasurementJobScript "${jobScriptGlobalPath}" "${betaValues[@]}"
     else
@@ -145,7 +145,7 @@ function __static__ProduceJobScript()
 
 function PackBetaValuesPerGpuAndCreateOrLookForJobScriptFiles()
 {
-    local betaValuesToBeSplit betasForJobScript betasString jobScriptFilename jobScriptGlobalPath walltime
+    local betaValuesToBeSplit betasForJobScript betasString jobScriptFilename jobScriptGlobalPath walltime errorCode
     betaValuesToBeSplit=( $@ )
     cecho lc "\n================================================================================="
     cecho bb " The following beta values have been grouped (together with the seed if used):"
@@ -165,8 +165,9 @@ function PackBetaValuesPerGpuAndCreateOrLookForJobScriptFiles()
             else
                 walltime="$(__static__CalculateWalltimeExtractingNumberOfTrajectoriesPerBetaAndUsingTimesPerTrajectoryIfGiven "${betasForJobScript[@]}")"
             fi
-            __static__ProduceJobScript "${jobScriptGlobalPath}" "${walltime}" "${betasForJobScript[@]}"
-            if [[ -e ${jobScriptGlobalPath} ]]; then
+            errorCode=0
+            __static__ProduceJobScript "${jobScriptGlobalPath}" "${walltime}" "${betasForJobScript[@]}" || errorCode=$?
+            if [[ -e ${jobScriptGlobalPath} && ${errorCode} -eq 0 ]]; then
                 BHMAS_betaSeedStringsToBeSubmitted+=( "${betasString}" )
                 BHMAS_betaValuesToBeSubmitted+=( "${betasForJobScript[@]}" )
             else

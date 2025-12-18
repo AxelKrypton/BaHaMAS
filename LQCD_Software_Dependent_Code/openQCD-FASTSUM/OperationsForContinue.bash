@@ -1,5 +1,5 @@
 #
-#  Copyright (c) 2020 Alessandro Sciarra
+#  Copyright (c) 2020-2021 Alessandro Sciarra
 #
 #  This file is part of BaHaMAS.
 #
@@ -219,7 +219,7 @@ function HandleOutputFilesForContinueForGivenSimulation_openQCD-FASTSUM()
         Error 'Line ' emph "${lineToMatch}" ' not found in outputfile\n'\
               file "${outputFileGlobalPath}.log\n"\
               'The value ' emph "beta = ${runId}" ' will be skipped!'
-        RestoreRunBetaDirectoryBeforeSkippingBeta_openQCD-FASTSUM
+        RestoreRunBetaDirectoryBeforeSkippingBeta_openQCD-FASTSUM ${runId}
         BHMAS_problematicBetaValues+=( ${runId} )
         return 1
     fi
@@ -228,7 +228,7 @@ function HandleOutputFilesForContinueForGivenSimulation_openQCD-FASTSUM()
 # This function should do needed operations to restore the beta folder state
 # for a followiung run of BaHaMAS so that no artificial error is later triggered
 #
-#  INPUT: runId
+#  INPUT: simulation ID (ignored)
 #  OUTPUT: -
 #  Local variables from the caller used: runBetaDirectory outputFileGlobalPath trashFolderGlobalPath
 #                                        nameOfLastConfiguration nameOfLastPRNG nameOfLastData
@@ -237,7 +237,9 @@ function HandleOutputFilesForContinueForGivenSimulation_openQCD-FASTSUM()
 #             1 if runId is problematic -> Added to BHMAS_problematicBetaValues array
 function RestoreRunBetaDirectoryBeforeSkippingBeta_openQCD-FASTSUM()
 {
-    #We ignore runId here, it is not needed for openQCD!
+    # ATTENTION: We ignore runId here, it is not needed for openQCD!
+    #            Uncomment in future is needed:
+    #               local runId; runId="$1"
     CheckIfVariablesAreDeclared runBetaDirectory outputFileGlobalPath\
                                 nameOfLastConfiguration nameOfLastPRNG\
                                 nameOfLastData trashFolderGlobalPath
@@ -249,7 +251,7 @@ function RestoreRunBetaDirectoryBeforeSkippingBeta_openQCD-FASTSUM()
     mv "${outputFileGlobalPath}.dat"                   "${runBetaDirectory}/${nameOfLastData}"          || exit ${BHMAS_fatalBuiltin}
     rm "${runBetaDirectory}/${BHMAS_outputFilename}.rng~" || exit ${BHMAS_fatalBuiltin}
     rm "${runBetaDirectory}/${BHMAS_outputFilename}.dat~" || exit ${BHMAS_fatalBuiltin}
-    #Empty trash folder and delete it
+    # Empty trash folder and delete it
     mv "${trashFolderGlobalPath}/"* "${runBetaDirectory}" || exit ${BHMAS_fatalBuiltin}
     rmdir "${trashFolderGlobalPath}"                      || exit ${BHMAS_fatalBuiltin}
 }

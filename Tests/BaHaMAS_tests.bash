@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-#  Copyright (c) 2017-2018,2020-2021 Alessandro Sciarra
+#  Copyright (c) 2017-2018,2020-2022 Alessandro Sciarra
 #
 #  This file is part of BaHaMAS.
 #
@@ -130,6 +130,7 @@ availableTests=(
     ['openQCD-FASTSUM-continue-new-exec']='openQCD-FASTSUM continue --walltime 1d --updateExecutable'
     ['openQCD-FASTSUM-continue-num']='openQCD-FASTSUM continue --till 10000 --walltime 1d'
     ['openQCD-FASTSUM-continue-goal']='openQCD-FASTSUM continue --walltime 1d'
+    ['openQCD-FASTSUM-continue-custom-cores']='openQCD-FASTSUM continue --walltime 1d --coresPerNode 48'
     ['openQCD-FASTSUM-continue-therm-last']='openQCD-FASTSUM continue-thermalization --walltime 1d -m=1234'
     ['openQCD-FASTSUM-continue-therm-resume']='openQCD-FASTSUM continue-thermalization --walltime 1d'
     ['openQCD-FASTSUM-continue-therm-new-exec']='openQCD-FASTSUM continue-thermalization --walltime 1d --updateExecutable'

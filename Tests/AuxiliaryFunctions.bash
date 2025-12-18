@@ -1,5 +1,6 @@
 #
-#  Copyright (c) 2017,2020-2021 Alessandro Sciarra
+#  Copyright (c) 2017,2020-2021,2023 Alessandro Sciarra
+#  Copyright (c) 2022-2023 Reinhold Kaiser
 #
 #  This file is part of BaHaMAS.
 #
@@ -188,6 +189,9 @@ function MakeTestPreliminaryOperations()
         readonly software='CL2QCD'
         readonly projectFolder='StaggeredFakeProject'
         testParametersString='Nf2_mui0_mass0050_nt6_ns18'
+        if [[ "$1" == 'CL2QCD-prepare-only' ]]; then
+            testParametersString='Nf5.0_mui2700PiT_mass0050_nt8_ns16'
+        fi
         testParametersPath="/${testParametersString//_/\/}"
     fi
     ln -s "${BHMAS_testsFolder}/UserVariables_${software}.bash" "${userVariablesFile}" 2>/dev/null
@@ -433,6 +437,12 @@ function InhibitBaHaMASCommands()
     function less(){ cecho -d "less $*"; }
     function sbatch(){ cecho -d "sbatch $*"; }
     function make(){ cecho -d "make $*"; touch "${@: -1}"; }
+    # Here we inhibit the container command we use in tests with CL2QCD
+    # where BHMAS_jobContainerCommand is set to 'singularity exec [...]'.
+    # The shift is meant to ignore the 'singularity exec' part and execute
+    # in the shell where the test is run the container command. This is
+    # crucial to let BaHaMAS successfully validate the user variable.
+    function singularity(){ shift 2; "$@"; }
     #To make liststatus find running job and then test measure time
     #NOTE: jobBetaSeedsStrings is an array because with openQCD each run handle one seed only!
     #      Here we fake mark the first entry as running to have something running for all codes.
@@ -448,7 +458,7 @@ function InhibitBaHaMASCommands()
     else
         function squeue(){ printf ''; }
     fi
-    export -f less sbatch make squeue
+    export -f less sbatch make squeue singularity
 }
 
 function RunBaHaMASInTestMode()

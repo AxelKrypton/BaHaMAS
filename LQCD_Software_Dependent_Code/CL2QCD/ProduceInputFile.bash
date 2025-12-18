@@ -1,5 +1,6 @@
 #
 #  Copyright (c) 2015,2017-2018,2020-2021 Alessandro Sciarra
+#  Copyright (c) 2022 Reinhold Kaiser
 #
 #  This file is part of BaHaMAS.
 #
@@ -77,8 +78,15 @@ function ProduceInputFile_CL2QCD()
         __static__AddToInputFile "useChemicalPotentialIm=0"
     else
         __static__AddToInputFile "useChemicalPotentialIm=1"
-        if [[ ${BHMAS_chempot} = "PiT" ]]; then
-            __static__AddToInputFile "chemicalPotentialIm=$(awk -v ntime="${BHMAS_ntime}" 'BEGIN{printf "%.15f\n", atan2(0, -1)/ntime}')"
+        if [[ ${BHMAS_chempot} =~ ^([0-9]{4})?PiT$ ]]; then
+            local piTFraction
+            piTFraction="${BHMAS_chempot%%PiT}"
+            if [[ ${piTFraction} = '' ]]; then
+                piTFraction=1
+            else
+                piTFraction=0."${piTFraction}"
+            fi
+            __static__AddToInputFile "chemicalPotentialIm=$(awk -v ntime="${BHMAS_ntime}" -v fraction="${piTFraction}" 'BEGIN{printf "%.15f\n", atan2(0, -1)/ntime*fraction}')"
         else
             Fatal ${BHMAS_fatalValueError} "Unknown value " emph "${BHMAS_chempot}" " of imaginary chemical potential for input file!"
         fi

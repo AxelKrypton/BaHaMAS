@@ -1,5 +1,5 @@
 #
-#  Copyright (c) 2014-2017,2020 Alessandro Sciarra
+#  Copyright (c) 2014-2017,2020,2022 Alessandro Sciarra
 #
 #  This file is part of BaHaMAS.
 #
@@ -107,9 +107,10 @@ function __static__ReadSingleParameterFromPathMatchingPrefixAndRegex()
     prefixToBeUsed="$2"
     regexToBeUsed="$3"
     __static__CheckPrefixExistence "${prefixToBeUsed}"
-    case $(grep -o "/${prefixToBeUsed}${regexToBeUsed}" <<< "${pathToBeSearchedIn}" | wc -l) in
+    case $(grep -o "/${prefixToBeUsed}${regexToBeUsed}/" <<< "${pathToBeSearchedIn}" | wc -l) in
         0)
-            Fatal ${BHMAS_fatalPathError} "Unable to recover " emph "${prefixToBeUsed}" " from the path " dir "$1" "." ;;
+            Fatal ${BHMAS_fatalPathError} "Unable to recover " emph "${prefixToBeUsed}"\
+                  " from the path\n  " dir "$1" ".\nPossibly, its value does not match the regex " emph "${regexToBeUsed//\\/}" "." ;;
         1)
             pieceOfPathWithParameter="$(grep -o "/${prefixToBeUsed}[^/]*" <<< "${pathToBeSearchedIn}")"
             declare -gr ${BHMAS_parameterVariableNames["${prefixToBeUsed}"]}="${pieceOfPathWithParameter##*${prefixToBeUsed}}"

@@ -1,6 +1,7 @@
 #
 #  Copyright (c) 2015 Christopher Czaban
 #  Copyright (c) 2016-2018,2020 Alessandro Sciarra
+#  Copyright (c) 2023 Reinhold Kaiser
 #
 #  This file is part of BaHaMAS.
 #
@@ -101,9 +102,9 @@ function AddSoftwareSpecificPartToMeasurementJobScript_CL2QCD()
             "for line in \$(cat \${workdir${index}}/${BHMAS_inversionSrunCommandsFilename}); do"\
             "    IFS=\${OLD_IFS} #Restore here old IFS to give separated options (and not only one)to CL2QCD!"\
             "    if hash mbuffer 2>/dev/null; then"\
-            "        time \${dir${index}}/${BHMAS_measurementExecutableFilename} \${line} --deviceId=${index} 2>> \${dir${index}}/\${errFile} | mbuffer -q -m2M >> \${dir${index}}/\${outFile}"\
+            "        time ${BHMAS_jobContainerCommand} \${dir${index}}/${BHMAS_measurementExecutableFilename} \${line} --deviceId=${index} 2>> \${dir${index}}/\${errFile} | mbuffer -q -m2M >> \${dir${index}}/\${outFile}"\
             "    else"\
-            "        time ${BHMAS_jobRunCommand} -n 1 \${dir${index}}/${BHMAS_measurementExecutableFilename} \${line} --deviceId=${index} 2>> \${dir${index}}/\${errFile} >> \${dir${index}}/\${outFile}"\
+            "        time ${BHMAS_jobRunCommand} -n 1 ${BHMAS_jobContainerCommand} \${dir${index}}/${BHMAS_measurementExecutableFilename} \${line} --deviceId=${index} 2>> \${dir${index}}/\${errFile} >> \${dir${index}}/\${outFile}"\
             "    fi"\
             "    if [[ \$? -ne 0 ]]; then"\
             "        printf \"\nError occurred in simulation at b${betaValues[${index}]%_*}.\n\""\

@@ -1,4 +1,4 @@
-<img src="https://gitlab.itp.uni-frankfurt.de/lattice-qcd/ag-philipsen/BaHaMAS/-/wikis/images/LogoDigital.png" align="right" width="30%" height="30%"/>
+<img src="https://gitlab.itp.uni-frankfurt.de/sciarra/BaHaMAS/-/wikis/images/LogoDigital.png" align="right" width="30%" height="30%"/>
 
 # BaHaMAS
 
@@ -65,7 +65,7 @@ Other hand drawn pictures have been realized by Aurora Somaglia as well, while t
    [slurm]: <https://slurm.schedmd.com/>
    [CL<sup>2</sup>QCD]: <https://github.com/AG-Philipsen/cl2qcd>
    [openQCD-FASTSUM]: <https://gitlab.com/fastsum/openqcd-fastsum>
-   [Wiki]: <https://gitlab.itp.uni-frankfurt.de/lattice-qcd/ag-philipsen/BaHaMAS/-/wikis/home>
+   [Wiki]: <https://gitlab.itp.uni-frankfurt.de/sciarra/BaHaMAS/-/wikis/home>
    [git]: <https://git-scm.com>
-   [logo]: <https://gitlab.itp.uni-frankfurt.de/lattice-qcd/ag-philipsen/BaHaMAS/-/blob/images/Logo.png>
-   [authors]: <https://gitlab.itp.uni-frankfurt.de/lattice-qcd/ag-philipsen/BaHaMAS/-/wikis/Authors>
+   [logo]: <https://gitlab.itp.uni-frankfurt.de/sciarra/BaHaMAS/-/blob/images/Logo.png>
+   [authors]: <https://gitlab.itp.uni-frankfurt.de/sciarra/BaHaMAS/-/wikis/Authors>

@@ -1,5 +1,5 @@
 #
-#  Copyright (c) 2017,2020 Alessandro Sciarra
+#  Copyright (c) 2017,2020,2023 Alessandro Sciarra
 #
 #  This file is part of BaHaMAS.
 #
@@ -65,6 +65,13 @@ function ProduceInputFileAndJobScriptForEachBeta()
 
 function ProduceExecutableFileForEachBeta()
 {
+    # Defensive check even if this function should be never entered in this scenario
+    if [[ ${BHMAS_executionMode} = mode:continue* ]] && [[ ${BHMAS_reproduceExecutable} = 'FALSE' ]]; then
+        Internal 'Logical error in '  emph "${FUNCNAME}" ' function.\n'\
+                 'Executable file(s) were asked to be produced for each beta in '\
+                 emph "${BHMAS_executionMode}"\
+                 '\nexecution mode, but without having explicitly asked to reproduce them.'
+    fi
     local betaFolder submitBetaDirectory listOfFolders
     listOfFolders=()
     for betaFolder in "${BHMAS_betaValuesToBeSubmitted[@]}"; do

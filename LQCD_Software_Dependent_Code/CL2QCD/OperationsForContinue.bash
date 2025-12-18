@@ -140,25 +140,30 @@ function HandleOutputFilesForContinueForGivenSimulation_CL2QCD()
              ${trashFolderGlobalPath}/$(basename ${outputFileGlobalPath}) > ${outputFileGlobalPath}; then
             Error "Measurement for trajectory " emph "$(( BHMAS_trajectoriesToBeResumedFrom[${runId}] - 1 ))" " not found in outputfile "\
                   emph "${outputFileGlobalPath}\n" "The value " emph "beta = ${runId}" " will be skipped!"
-            RestoreRunBetaDirectoryBeforeSkippingBeta_CL2QCD
+            RestoreRunBetaDirectoryBeforeSkippingBeta_CL2QCD ${runId}
             BHMAS_problematicBetaValues+=( ${runId} )
             return 1
         fi
-        #Make same operations on pbp file, if existing
+        #Make same operations on pbp file, if existing and measuring it. Warn if existing but not measuring it!
         if [[ -f ${outputPbpFileGlobalPath} ]]; then
-            mv ${outputPbpFileGlobalPath} ${trashFolderGlobalPath} || exit ${BHMAS_fatalBuiltin}
-            if ! awk -v tr="${BHMAS_trajectoriesToBeResumedFrom[${runId}]}"\
-                 'BEGIN{found=1} $1<tr{print $0} $1==(tr-1){found=0} END{exit found}'\
-                 ${trashFolderGlobalPath}/$(basename ${outputPbpFileGlobalPath}) > ${outputPbpFileGlobalPath}; then
-                Error "Measurement for trajectory " emph "$(( BHMAS_trajectoriesToBeResumedFrom[${runId}] - 1 ))" " not found in pbp outputfile "\
-                      emph "${outputPbpFileGlobalPath}\n" "The value " emph "beta = ${runId}" " will be skipped!"
-                RestoreRunBetaDirectoryBeforeSkippingBeta_CL2QCD
-                BHMAS_problematicBetaValues+=( ${runId} )
-                return 1
-            fi
-            #If the pbp file is non empty, add end of line to it to be sure the prompt is at the beginning of a new line
-            if [[ $(wc -l < ${outputPbpFileGlobalPath}) -ne 0 ]]; then
-                sed -i '$a\' ${outputPbpFileGlobalPath}
+            if [[ ${BHMAS_measurePbp} = 'FALSE' ]]; then
+                Warning 'Pbp file ' file "$(basename ${outputPbpFileGlobalPath})" ' found for run ID ' emph "${runId}"\
+                        ' but measuring of pbp ' emph 'switched OFF' '. Not cleaning it in resuming run.'
+            else
+                mv ${outputPbpFileGlobalPath} ${trashFolderGlobalPath} || exit ${BHMAS_fatalBuiltin}
+                if ! awk -v tr="${BHMAS_trajectoriesToBeResumedFrom[${runId}]}"\
+                     'BEGIN{found=1} $1<tr{print $0} $1==(tr-1){found=0} END{exit found}'\
+                     ${trashFolderGlobalPath}/$(basename ${outputPbpFileGlobalPath}) > ${outputPbpFileGlobalPath}; then
+                    Error "Measurement for trajectory " emph "$(( BHMAS_trajectoriesToBeResumedFrom[${runId}] - 1 ))" " not found in pbp outputfile "\
+                          emph "${outputPbpFileGlobalPath}\n" "The value " emph "beta = ${runId}" " will be skipped!"
+                    RestoreRunBetaDirectoryBeforeSkippingBeta_CL2QCD ${runId}
+                    BHMAS_problematicBetaValues+=( ${runId} )
+                    return 1
+                fi
+                #If the pbp file is non empty, add end of line to it to be sure the prompt is at the beginning of a new line
+                if [[ $(wc -l < ${outputPbpFileGlobalPath}) -ne 0 ]]; then
+                    sed -i '$a\' ${outputPbpFileGlobalPath}
+                fi
             fi
         fi
     fi

@@ -1,5 +1,6 @@
 #
 #  Copyright (c) 2017-2018,2020 Alessandro Sciarra
+#  Copyright (c) 2023 Reinhold Kaiser
 #
 #  This file is part of BaHaMAS.
 #
@@ -50,6 +51,7 @@ function DeclareUserDefinedGlobalVariables()
     readonly BHMAS_measurementExecutableGlobalPath=''
     readonly BHMAS_thermConfsGlobalPath="${BHMAS_submitDiskGlobalPath}/${BHMAS_projectSubpath}/Thermalized_Configurations"
     readonly BHMAS_maximumWalltime="1-00:00:00"
+    readonly BHMAS_jobContainerCommand=""
 
     #Possible default value for options which can then not be given via command line
     BHMAS_coresPerNode=48
