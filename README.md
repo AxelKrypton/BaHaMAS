@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4572833.svg)](https://doi.org/10.5281/zenodo.4572833)
+[![Static Badge](https://img.shields.io/badge/DOI-Cite_me_via_Zenodo-blue)](https://doi.org/10.5281/zenodo.4572833)
 [![Static Badge](https://img.shields.io/badge/Cite_me-BibTeX-ffff00)](https://github.com/AxelKrypton/BaHaMAS/wiki/How-To-Cite-BaHaMAS)
 
 <img src="https://github.com/AxelKrypton/BaHaMAS/wiki/images/LogoDigital.png" align="right" width="30%" height="30%"/>
