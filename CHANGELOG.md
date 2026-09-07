@@ -108,10 +108,10 @@ However, it is impossible to avoid those, especially in an earlier phase of deve
 * :sos: Fix tests failures due to hard-coded path in tests setup.
 
 
-[Unreleased]: https://gitlab.itp.uni-frankfurt.de/sciarra/bahamas/-/compare/BaHaMAS-0.5.0...develop
-[Version 0.5.0]: https://gitlab.itp.uni-frankfurt.de/sciarra/bahamas/-/releases/BaHaMAS-0.5.0
-[Version 0.4.0]: https://gitlab.itp.uni-frankfurt.de/sciarra/bahamas/-/releases/BaHaMAS-0.4.0
-[Version 0.3.1]: https://gitlab.itp.uni-frankfurt.de/sciarra/bahamas/-/releases/BaHaMAS-0.3.1
-[Version 0.3.0]: https://gitlab.itp.uni-frankfurt.de/sciarra/bahamas/-/releases/BaHaMAS-0.3.0
-[Version 0.2.0]: https://gitlab.itp.uni-frankfurt.de/sciarra/bahamas/-/releases/BaHaMAS-0.2.0
-[Version 0.1.0]: https://gitlab.itp.uni-frankfurt.de/sciarra/bahamas/-/releases/BaHaMAS-0.1.0
+[Unreleased]:    https://github.com/AxelKrypton/BaHaMAS/compare/BaHaMAS-0.5.0...develop
+[Version 0.5.0]: https://github.com/AxelKrypton/BaHaMAS/releases/tag/BaHaMAS-0.5.0
+[Version 0.4.0]: https://github.com/AxelKrypton/BaHaMAS/releases/tag/BaHaMAS-0.4.0
+[Version 0.3.1]: https://github.com/AxelKrypton/BaHaMAS/releases/tag/BaHaMAS-0.3.1
+[Version 0.3.0]: https://github.com/AxelKrypton/BaHaMAS/releases/tag/BaHaMAS-0.3.0
+[Version 0.2.0]: https://github.com/AxelKrypton/BaHaMAS/releases/tag/BaHaMAS-0.2.0
+[Version 0.1.0]: https://github.com/AxelKrypton/BaHaMAS/releases/tag/BaHaMAS-0.1.0

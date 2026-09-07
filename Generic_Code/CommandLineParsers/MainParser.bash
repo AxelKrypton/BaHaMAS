@@ -134,7 +134,7 @@ function ParseRemainingCommandLineOptions()
     #  - for categories 4,5,6 we have a pool of options which are
     #    parsed all together but preliminary checked if allowed.
     #
-    # https://gitlab.itp.uni-frankfurt.de/sciarra/BaHaMAS/issues/27
+    # https://github.com/AxelKrypton/BaHaMAS/issues/27
     local modeSpecificAllSoftwareParser
     modeSpecificAllSoftwareParser=(
         'mode:thermalize'

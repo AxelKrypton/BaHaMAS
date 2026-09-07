@@ -1,4 +1,4 @@
-<img src="https://gitlab.itp.uni-frankfurt.de/sciarra/BaHaMAS/-/wikis/images/LogoDigital.png" align="right" width="30%" height="30%"/>
+<img src="https://github.com/AxelKrypton/BaHaMAS/wiki/images/LogoDigital.png" align="right" width="30%" height="30%"/>
 
 # BaHaMAS
 
@@ -7,7 +7,7 @@
 ### Origin of the code
 
 `BaHaMAS` has been initially developed to run LQCD simulations with the [CL<sup>2</sup>QCD] software on clusters provided with the [slurm] job scheduler.
-Although this could sound quite limitating, a remarkable effort has been done to give modularity to the codebase and, by now, scheduler and LQCD-software dependent code has been isolated.
+Although this could sound quite limiting, a remarkable effort has been done to give modularity to the codebase and, by now, scheduler and LQCD-software dependent code has been isolated.
 Therefore, the structure of the code allows for easy generalisations and it should not be difficult to provide an implementation for a different job scheduler and/or for a different software.
 
 ### Supported LQCD software and job scheduler
@@ -65,7 +65,7 @@ Other hand drawn pictures have been realized by Aurora Somaglia as well, while t
    [slurm]: <https://slurm.schedmd.com/>
    [CL<sup>2</sup>QCD]: <https://github.com/AG-Philipsen/cl2qcd>
    [openQCD-FASTSUM]: <https://gitlab.com/fastsum/openqcd-fastsum>
-   [Wiki]: <https://gitlab.itp.uni-frankfurt.de/sciarra/BaHaMAS/-/wikis/home>
+   [Wiki]: <https://github.com/AxelKrypton/BaHaMAS/wiki>
    [git]: <https://git-scm.com>
-   [logo]: <https://gitlab.itp.uni-frankfurt.de/sciarra/BaHaMAS/-/blob/images/Logo.png>
-   [authors]: <https://gitlab.itp.uni-frankfurt.de/sciarra/BaHaMAS/-/wikis/Authors>
+   [logo]: <https://github.com/AxelKrypton/BaHaMAS/blob/images/Logo_digital.png>
+   [authors]: <https://github.com/AxelKrypton/BaHaMAS/wiki/Authors>
